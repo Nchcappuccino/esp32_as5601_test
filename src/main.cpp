@@ -2,15 +2,16 @@
 as5601::AS5601 enc;
 
 void setup() {
-  // put your setup code here, to run once:
+  //内部プルアップ抵抗を有効にする.
   pinMode(26, INPUT_PULLUP);
   pinMode(27, INPUT_PULLUP);
   Serial.begin(115200);
   Wire.begin(26, 27);
-  Wire.setClock(400000);
+  Wire.setClock(100000);
+  enc.init(RotationDir::REGULAR_DIR);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   enc.update();
+  enc.print();
 }
